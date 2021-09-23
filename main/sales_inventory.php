@@ -91,8 +91,8 @@ function Clickheretoprint()
 			<th width="14%"> Brand Name </th>
 			<th width="16%"> Generic Name </th>
 			<th width="15%"> Category / Description </th>
-			<th > Price </th>
-			<th> QTY </th>
+			<th width="9%"> Price </th>
+			<th width="9%"> QTY </th>
 
 			<th width="8%"> Total Amount </th>
 			<th width="8%"> Profit </th>

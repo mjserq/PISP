@@ -12,10 +12,11 @@ $h = $_POST['profit'];
 $i = $_POST['gen'];
 $j = $_POST['date_arrival'];
 $k = $_POST['qty_sold'];
+$l = $_POST['subcate'];
 // query
-$sql = "INSERT INTO products (product_code,product_name,expiry_date,price,supplier,qty,o_price,profit,gen_name,date_arrival,qty_sold) VALUES (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k)";
+$sql = "INSERT INTO products (product_code,product_name,expiry_date,price,supplier,qty,o_price,profit,gen_name,date_arrival,qty_sold,subcat) VALUES (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l)";
 $q = $db->prepare($sql);
-$q->execute(array(':a'=>$a,':b'=>$b,':c'=>$c,':d'=>$d,':e'=>$e,':f'=>$f,':g'=>$g,':h'=>$h,':i'=>$i,':j'=>$j,':k'=>$k));
+$q->execute(array(':a'=>$a,':b'=>$b,':c'=>$c,':d'=>$d,':e'=>$e,':f'=>$f,':g'=>$g,':h'=>$h,':i'=>$i,':j'=>$j,':k'=>$k,':l'=>$l));
 header("location: products.php");
 
 

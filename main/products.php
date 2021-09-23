@@ -141,7 +141,8 @@ function sum() {
 		<tr>
 			<th width="12%"> Item Code </th>
 			<th width="14%"> Item Name </th>
-			<th width="13%"> Category </th>
+			<th width="5%"> Category </th>
+			<th width="7%"> Sub-Category </th>
 			<th width="7%"> Supplier </th>
 			<th width="9%"> Date Received </th>
 			<th width="10%"> Expiry Date </th>
@@ -201,6 +202,7 @@ function sum() {
 			<td><?php echo $row['product_code']; ?></td>
 			<td><?php echo $row['product_name']; ?></td>
 			<td><?php echo $row['gen_name']; ?></td>
+			<td><?php echo $row['subcat']; ?></td>
 			<td><?php echo $row['supplier']; ?></td>
 			<td><?php echo $row['date_arrival']; ?></td>
 			<td><?php echo $row['expiry_date']; ?></td>
