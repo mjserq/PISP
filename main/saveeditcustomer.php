@@ -1,22 +1,31 @@
 <?php
 // configuration
-include('../connect.php');
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$databasename = "posales";
 
-// new data
-$id = $_POST['memi'];
-$a = $_POST['name'];
-$b = $_POST['address'];
-$c = $_POST['contact'];
-$d = $_POST['memno'];
-$e = $_POST['prod_name'];
-$f = $_POST['note'];
-$g = $_POST['date'];
+	$connect = mysqli_connect($servername,$username,$password,$databasename);
 // query
-$sql = "UPDATE customer 
-        SET customer_name=?, address=?, contact=?, membership_number=?, prod_name=?, note=?, expected_date=?
-		WHERE customer_id=?";
-$q = $db->prepare($sql);
-$q->execute(array($a,$b,$c,$d,$e,$f,$g,$id));
-header("location: customer.php");
+if (isset($_POST['btnUpdate'])) {
+
+		$id = $_POST['memi'];
+		$stat = $_POST['stats'];
+
+		$update = "UPDATE customer SET status = '$stat' WHERE customer_id = '$id' ";
+		$query = mysqli_query($connect,$update);
+
+		if ($query == TRUE) {
+			echo '<script> alert ("Status Updated"); </script>';
+			header("location: customer.php");
+			exit();
+		}
+		else{
+			echo '<script> alert ("Status not Updated"); </script>';
+			exit();
+		}
+
+
+}
 
 ?>

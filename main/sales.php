@@ -9,7 +9,7 @@
 			</div>
 			<ul class="breadcrumb">
 			<a href="index.php"><li>Dashboard</li></a> /
-			<li class="active">Sales</li>
+			<li class="active">Point of Sale</li>
 			</ul>
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
@@ -49,7 +49,7 @@ if($position=='admin') {
 <input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
 <Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
 </form>
-<table class="table table-bordered " id="resultTable" data-responsive="table">
+<table class="table table-borderless " id="resultTable" data-responsive="table">
 	<thead>
 		<tr>
 			<th> Product Name </th>
@@ -62,7 +62,7 @@ if($position=='admin') {
 			<th> Action </th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody >
 		
 			<?php
 				$id=$_GET['invoice'];
@@ -151,14 +151,24 @@ if($position=='admin') {
 				?>
 		
 				</td>
+				<tr>
+					<td style="border: none;"></td>
+					<td style="border: none;"></td>
+					<td style="border: none;"></td>
+					<td style="border: none;"></td>
+					<td style="border: none;"></td>
+					<td style="border: none;"></td>
+					<td style="border: none;"><a rel="facebox" href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $fgfg ?>&totalprof=<?php echo $asd ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large btn-block"><i  class="icon icon-save icon-large" ></i> Invoice</button></a>
+<div class="clearfix"></div></td>
+					<td style="border: none;"></td>
+				</tr>
 				<th></th>
 			</tr>
 		
 	</tbody>
 </table><br>
-<a rel="facebox" href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $fgfg ?>&totalprof=<?php echo $asd ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large btn-block"><i class="icon icon-save icon-large"></i> Invoice</button></a>
-<div class="clearfix"></div>
-</div>
+
+</div >
 </div>
 </body>
 <?php include('footer.php');?>

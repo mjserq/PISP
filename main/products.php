@@ -128,9 +128,9 @@ function sum() {
 			<font color="red" style="font:bold 22px 'Aleo'; margin-left: 7px;">[<?php echo $rowcount1234;?>]</font> Products has Critical Quantity  
 			</div>
 
-			<div>
+			<!--<div>
 			<font style="color:black; font:bold 22px 'Aleo'; margin-left: -54px;">[<?php echo $total;?>]</font> Total expired products   
-			</div>
+			</div>-->
 			</center>
         </div>
     
