@@ -1,6 +1,6 @@
 <?php
 	//Start session
-	session_start();
+	session_start();      
 	
 	//Array to store validation errors
 	$errmsg_arr = array();

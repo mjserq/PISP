@@ -1,11 +1,5 @@
-<html>
-<head>
-	<title>Dashboard</title>
-</head>
-<body>
 
-<?php include 'header.php'; ?>
-<?php include('navfixed.php');?>
+
 <div style="margin-top: 25px;" class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">
@@ -15,7 +9,7 @@
                   $position=$_SESSION['SESS_LAST_NAME'];
                   if($position=='Cashier') {
                   ?>
-                  <li><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
+                  <li class="active"><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
                   <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-large"></i> Point of Sale <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
                   <li><a href="customer.php"><i class="icon-group icon-large"></i> Customer Reservation <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
                   
@@ -25,7 +19,7 @@
                   if($position=='Admin') {
                   ?>
 
-                  <li><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
+                  <li class="active"><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
                   <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-large"></i> Point of Sale <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
                   <li><a href="customer.php"><i class="icon-group icon-large"></i> Customer Reservation <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
                   <li><a href="products.php"><i class="icon-table icon-large"></i> Inventory <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
@@ -44,58 +38,4 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-
-
-    <div style="margin-left: 200px" class="container-fluid">
-      <div class="row-fluid">
-
-
-
-	
-	
-	<div class="contentheader">
-			<i class="icon-dashboard"></i> Dashboard
-			</div>
-			<ul class="breadcrumb">
-			<li class="active">Dashboard</li>
-			</ul>
-			
-			
-<div id="mainmain">
-
-	<h1>Top Customer</h1>
-
-	<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
-	<thead>
-		<tr>
-			
-			<th width="50%"> Customer Name </th>
-			<th width="50%"> No. of Purchase </th>
-			
-	</thead>
-	<tbody>
-		
-			<?php
-				include('../connect.php');
-				$result = $db->prepare("SELECT name, COUNT(*) FROM sales GROUP BY name ORDER BY COUNT(*) DESC LIMIT 10");
-				$result->execute();
-				for($i=0; $row = $result->fetch(); $i++){
-			?>
-			<tr class="record">
-			<td><?php echo $row['name']; ?></td>
-			<td><?php echo $row['COUNT(*)']; ?></td>
-			
-			</tr>
-			<?php
-				}
-			?>
-		</tbody>
-</table>	
-
-</div>
-</div>
-</div>
-</body>
-<footer style="margin-left: 50%">SysGrinder 2021</footer>
-<?php include('footer.php'); ?>
-</html>
+   

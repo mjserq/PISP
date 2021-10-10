@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2021 at 10:55 AM
+-- Generation Time: Oct 06, 2021 at 01:32 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -41,8 +41,7 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (4, 'Mod'),
 (5, 'Juice'),
 (6, 'Accessories'),
-(8, 'Battery'),
-(9, 'TEst');
+(8, 'Battery');
 
 -- --------------------------------------------------------
 
@@ -57,21 +56,17 @@ CREATE TABLE `customer` (
   `contact` varchar(100) NOT NULL,
   `prod_name` varchar(550) NOT NULL,
   `expected_date` varchar(500) NOT NULL,
-  `note` varchar(500) NOT NULL
+  `note` varchar(500) NOT NULL,
+  `transac` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_name`, `address`, `contact`, `prod_name`, `expected_date`, `note`) VALUES
-(1, 'test', 'test', 'test', 'test', '2021-05-28', 'test'),
-(2, 'TEst2', 'test2', '09098526359', 'test2test2', '2021-06-21', '200'),
-(3, 'Test3', 'Test3', '09098526359', 'Test3', '2021-06-22', 'Test3'),
-(4, 'test', 'test', 'test', 'test', 'test', 'test'),
-(5, 'test', 'test', 'test', 'test', 'test', 'test'),
-(6, 'test', 'test', 'test', 'test', 'test', 'test'),
-(8, 'Sample', 'Sample', '0728373', 'sample', 'sample', 'sample');
+INSERT INTO `customer` (`customer_id`, `customer_name`, `address`, `contact`, `prod_name`, `expected_date`, `note`, `transac`, `status`) VALUES
+(19, 'asdasd', 'asdasdas', 'asdasdas', 'asdasd', 'asdasd', 'asda', 'Walkin', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -100,7 +95,11 @@ INSERT INTO `customer_user` (`user_id`, `fullname`, `username`, `password`, `add
 (20, 'Kite', 'Kite', 'e10adc3949ba59abbe56e057f20f883e', 'asdasdasd'),
 (21, 'test', 'test2', '098f6bcd4621d373cade4e832627b4f6', 'test'),
 (22, 'Pierre Serquina', 'pierre', 'e10adc3949ba59abbe56e057f20f883e', 'San Nicolas'),
-(23, 'test', 'test3', '098f6bcd4621d373cade4e832627b4f6', 'test');
+(23, 'test', 'test3', '098f6bcd4621d373cade4e832627b4f6', 'test'),
+(24, 'gtarp', 'barrio', 'd4177dc752cddc204b22ec5798c4400e', 'los santos'),
+(25, 'Karl Zulu', 'zulu', 'e10adc3949ba59abbe56e057f20f883e', 'Earth'),
+(26, 'Andrei Hornilla', 'Drei', 'e10adc3949ba59abbe56e057f20f883e', 'Cavite'),
+(27, 'qwe', 'qwe', 'e10adc3949ba59abbe56e057f20f883e', 'qwe');
 
 -- --------------------------------------------------------
 
@@ -112,6 +111,7 @@ CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
   `product_code` varchar(200) NOT NULL,
   `gen_name` varchar(200) NOT NULL,
+  `subcat` text NOT NULL,
   `product_name` varchar(200) NOT NULL,
   `cost` varchar(100) NOT NULL,
   `o_price` varchar(100) NOT NULL,
@@ -129,10 +129,10 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_code`, `gen_name`, `product_name`, `cost`, `o_price`, `price`, `profit`, `supplier`, `onhand_qty`, `qty`, `qty_sold`, `expiry_date`, `date_arrival`) VALUES
-(1, 'MRVS-ce3e', 'Mod', 'Testmod', '', '1800', '2500', '700', 'Test', 0, 0, 10, '2021-06-23', '2021-06-09'),
-(2, 'MRVS-1abe', 'Juice', 'Testjuice', '', '180', '250', '70', 'Test', 0, 9, 20, '2021-06-30', '2021-06-09'),
-(4, 'MRVS-9374', 'Accessories', 'Test', '', '1800', '2500', '700', 'Test', 0, 2, 2, '2021-06-08', '2021-06-01');
+INSERT INTO `products` (`product_id`, `product_code`, `gen_name`, `subcat`, `product_name`, `cost`, `o_price`, `price`, `profit`, `supplier`, `onhand_qty`, `qty`, `qty_sold`, `expiry_date`, `date_arrival`) VALUES
+(2, 'MRVS-1abe', 'Juice', '3mg', 'Testjuice ', '', '180', '250', '70', 'Test', 0, -2, 20, '2021-06-30', '2021-06-09'),
+(3, 'MRVS-06dd', 'Juice', '6mg', 'Test juice1', '', '300', '500', '200', 'Test', 0, 35, 50, '2021-09-30', '2021-09-23'),
+(6, 'MRVS-1019', 'Mod', 'None', 'Mod 1 ', '', '1800', '2500', '700', 'Test', 0, 9, 10, '', '2021-10-02');
 
 -- --------------------------------------------------------
 
@@ -160,15 +160,26 @@ INSERT INTO `sales` (`transaction_id`, `invoice_number`, `cashier`, `date`, `typ
 (1, 'MR-386302', 'Monica Paragas', '06/09/21', 'cash', '6750', '1800', '7000', 'Jemas'),
 (2, 'MR-533339', 'mj', '06/09/21', 'cash', '3250', '820', '3500', 'Spade'),
 (3, 'MR-22230723', 'mj', '06/09/21', 'cash', '500', '50', '500', 'Em'),
-(4, 'MR-93073202', 'mj', '06/10/21', 'cash', '2500', '700', '2500', 'Spade'),
 (5, 'MR-38033093', 'mj', '06/10/21', 'cash', '5000', '1400', '5000', 'Spade'),
 (6, 'MR-3333', 'mj', '06/14/21', 'cash', '500', '50', '1', 'Spade'),
-(7, 'MR-3227030', 'Al Sabangan', '06/15/21', 'cash', '2500', '700', '2500', 'Spade'),
 (8, 'MR-2232332', 'mj', '06/17/21', 'cash', '250', '70', '250', 'Spade'),
 (9, 'MR-260339', 'mj', '06/23/21', 'cash', '10000000', '9999990', '10000000', 'Hello'),
 (10, 'MR-7334206', 'mj', '06/28/21', 'cash', '5000', '1400', '1400', 'Spade'),
 (11, 'MR-323227', 'mj', '06/28/21', 'cash', '2500', '700', '2500', 'Hello'),
-(12, 'MR-2522220', 'Monica Paragas', '06/28/21', 'cash', '250', '70', '250', 'Test');
+(12, 'MR-2522220', 'Monica Paragas', '06/28/21', 'cash', '250', '70', '250', 'Test'),
+(13, 'MR-88202', 'mj', '08/26/21', 'cash', '2750', '770', '2750', 'Customer One'),
+(14, 'MR-2323330', 'mj', '08/29/21', 'cash', '2750', '770', '2750', 'Gerald'),
+(15, 'MR-824832', 'mj', '09/23/21', 'cash', '750', '270', '750', 'Blaze123456'),
+(16, 'MR-722072', 'mj', '09/23/21', 'cash', '500', '200', '500', 'sample sale'),
+(17, 'MR-333230', 'mj', '09/23/21', 'cash', '2000', '1070', '2000', 'sample sale2'),
+(18, 'MR-2382232', 'mj', '09/23/21', 'cash', '14000', '8000', '14000', 'Noemi'),
+(19, 'MR-3223228', 'Monica Paragas', '09/28/21', 'cash', '1100', '470', '1200', 'Customer '),
+(20, 'MR-38088527', 'mj', '09/29/21', 'cash', '500', '200', '500', 'samplesample'),
+(21, 'MR-362030', 'mj', '09/30/21', 'cash', '500', '200', '500', 'nghvfnghv'),
+(22, 'MR-69229', 'mj', '10/01/21', 'cash', '500', '200', '7415', 'nvbchgv'),
+(23, 'MR-2030300', 'mj', '10/02/21', 'cash', '500', '200', '5684', 'gchgcv'),
+(24, 'MR-3033330', 'mj', '10/04/21', 'cash', '1000', '340', '1000', 'Sample100'),
+(25, 'MR-733966', 'mj', '10/04/21', 'cash', '1250', '470', '1300', 'sample sale');
 
 -- --------------------------------------------------------
 
@@ -196,13 +207,26 @@ CREATE TABLE `sales_order` (
 --
 
 INSERT INTO `sales_order` (`transaction_id`, `invoice`, `product`, `qty`, `amount`, `profit`, `product_code`, `gen_name`, `name`, `price`, `discount`, `date`) VALUES
-(1, 'MR-386302', '1', '2', '5000', '1400', 'MRVS-ce3e', 'Mod', 'Testmod', '2500', '', '06/09/21'),
-(2, 'MR-386302', '2', '5', '1250', '350', 'MRVS-1abe', 'Juice', 'Testjuice', '250', '', '06/09/21'),
-(3, 'MR-386302', '3', '1', '500', '50', 'MRVS-fe4c', 'Battery', 'Test', '500', '', '06/09/21'),
-(4, 'MR-533339', '1', '1', '2500', '700', 'MRVS-ce3e', 'Mod', 'Testmod', '2500', '', '06/09/21'),
-(5, 'MR-533339', '3', '1', '500', '50', 'MRVS-fe4c', 'Battery', 'Test', '500', '', '06/09/21'),
-(21, 'MR-2023330', '2', '1', '250', '70', 'MRVS-1abe', 'Juice', 'Testjuice', '250', '', '06/28/21'),
-(22, 'MR-2522220', '2', '1', '250', '70', 'MRVS-1abe', 'Juice', 'Testjuice', '250', '', '06/28/21');
+(39, 'MR-333230', '2', '1', '250', '70', 'MRVS-1abe', 'Juice', 'Testjuice', '250', '', '09/23/21'),
+(42, 'MR-2382232', '5', '40', '14000', '8000', 'MRVS-9d46', 'Juice', 'Test juice2', '350', '', '09/23/21'),
+(44, 'MR-3223228', '2', '1', '250', '70', 'MRVS-1abe', 'Juice', 'Testjuice', '250', '', '09/28/21'),
+(45, 'MR-3223228', '5', '1', '350', '200', 'MRVS-9d46', 'Juice', 'Test juice2', '350', '', '09/28/21'),
+(46, 'MR-3223228', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '09/28/21'),
+(47, 'MR-38088527', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '09/29/21'),
+(48, 'MR-362030', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '09/30/21'),
+(49, 'MR-69229', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/01/21'),
+(50, 'MR-2030300', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/02/21'),
+(51, 'MR-2222334', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/04/21'),
+(53, 'MR-52302', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/04/21'),
+(54, 'MR-52302', '6', '1', '2500', '700', 'MRVS-1019', 'Mod', 'Mod 1', '2500', '', '10/04/21'),
+(55, 'MR-52302', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/04/21'),
+(57, 'MR-3322320', '2', '1', '250', '70', 'MRVS-1abe', 'Juice', 'Testjuice', '250', '', '10/04/21'),
+(59, 'MR-3033330', '3', '1', '500', '200', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/04/21'),
+(60, 'MR-3033330', '2', '2', '500', '140', 'MRVS-1abe', 'Juice', 'Testjuice ', '250', '', '10/04/21'),
+(61, 'MR-2422223', '2', '1', '250', '70', 'MRVS-1abe', 'Juice', 'Testjuice ', '250', '', '10/04/21'),
+(62, 'MR-2422223', '3', '2', '1000', '400', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/04/21'),
+(63, 'MR-733966', '2', '1', '250', '70', 'MRVS-1abe', 'Juice', 'Testjuice ', '250', '', '10/04/21'),
+(64, 'MR-733966', '3', '2', '1000', '400', 'MRVS-06dd', 'Juice', 'Test juice1', '500', '', '10/04/21');
 
 -- --------------------------------------------------------
 
@@ -224,7 +248,7 @@ CREATE TABLE `supliers` (
 --
 
 INSERT INTO `supliers` (`suplier_id`, `suplier_name`, `suplier_address`, `suplier_contact`, `contact_person`, `note`) VALUES
-(1, 'Test', 'Urdaneta Pangasinan', 'Juan Dela Cruz', '09093254587', 'sadfasda');
+(1, 'Geekpvape', 'Urdaneta Pangasinan', 'Juan Dela Cruz', '09093254587', 'sadfasda');
 
 -- --------------------------------------------------------
 
@@ -247,8 +271,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `position`) VALUES
 (8, 'mjserq', '21232f297a57a5a743894a0e4a801fc3', 'mj', 'Admin'),
 (9, 'monparagas', 'ee11cbb19052e40b07aac0ca060c23ee', 'Monica Paragas', 'Cashier'),
-(10, 'zaratenoemi', 'ee11cbb19052e40b07aac0ca060c23ee', 'Noemi Zarate', 'Cashier'),
-(11, 'Bongdg', '734c2fbd0b4ee6ee97f6f9b97dbad0e9', 'Al Sabangan', 'Admin');
+(10, 'zaratenoemi', 'ee11cbb19052e40b07aac0ca060c23ee', 'Noemi Zarate', 'Cashier');
 
 --
 -- Indexes for dumped tables
@@ -310,37 +333,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `customer_user`
 --
 ALTER TABLE `customer_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `sales_order`
 --
 ALTER TABLE `sales_order`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `supliers`
@@ -352,7 +375,7 @@ ALTER TABLE `supliers`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

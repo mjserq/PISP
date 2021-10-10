@@ -84,13 +84,13 @@ function sum() {
 			<i class="icon-table"></i> Categories
 			</div>
 			<ul class="breadcrumb">
-			<li><a href="index.php">Dashboard</a></li> /
+			<li><a href="products.php">Inventory</a></li> /
 			<li class="active">Category</li>
 			</ul>
 
 
 <div style="margin-top: -19px; margin-bottom: 21px;">
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+<a  href="products.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 			<?php 
 			include('../connect.php');
 				$result = $db->prepare("SELECT * FROM category ORDER BY id DESC");

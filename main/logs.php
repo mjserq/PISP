@@ -32,31 +32,7 @@ require_once('auth.php');
 <script src="src/facebox.js" type="text/javascript"></script>
 
 <link rel="stylesheet" type="text/css" href="tcal.css" />
-<script type="text/javascript" src="tcal.js"></script>
-<script language="javascript">
-function Clickheretoprint()
-{ 
-  var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
-      disp_setting+="scrollbars=yes,width=700, height=400, left=100, top=25"; 
-  var content_vlue = document.getElementById("content").innerHTML; 
-  
-  var docprint=window.open("","",disp_setting); 
-   docprint.document.open(); 
-   docprint.document.write('</head><body onLoad="self.print()" style="width: 700px; font-size:11px; font-family:arial; font-weight:normal;">');          
-   docprint.document.write(content_vlue); 
-   docprint.document.close(); 
-   docprint.focus(); 
-}
-</script>
 
-<script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $('a[rel*=facebox]').facebox({
-      loadingImage : 'src/loading.gif',
-      closeImage   : 'src/closelabel.png'
-    })
-  })
-</script>
 </head>
 
 <body>
@@ -83,7 +59,6 @@ function Clickheretoprint()
 <table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="12%"> Transaction ID </th>
 			<th width="9%"> Date </th>
 			<th width="14%"> Invoice Number</th>
 			<th width="16%"> Cashier </th>
@@ -102,7 +77,6 @@ function Clickheretoprint()
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
 			<tr class="record">
-			<td><?php echo $row['transaction_id']; ?></td>
 			<td><?php echo $row['date']; ?></td>
 			<td><?php echo $row['invoice_number']; ?></td>
 			<td><?php echo $row['cashier']; ?></td>

@@ -136,6 +136,8 @@ function sum() {
     
 <input type="text" style="height:35px; color:#222;" name="filter" value="" id="filter" placeholder="Search Product..." autocomplete="off" />
 <a rel="facebox" href="addproduct.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Product</button></a><br><br>
+<a href="cat.php"><Button class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Category</button></a><br><br>
+
 <table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>

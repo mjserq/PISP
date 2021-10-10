@@ -1,5 +1,7 @@
 <?php include 'header.php'; ?>
 <?php include('navfixed.php');?>
+
+
     <div class="container-fluid">
       <div class="row-fluid">
 	   	

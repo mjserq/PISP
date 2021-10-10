@@ -104,7 +104,20 @@ background-repeat:no-repeat;
 <input type="hidden" name="cashier" value="<?php echo $_GET['cashier']; ?>" />
 <input type="hidden" name="profit" value="<?php echo $_GET['totalprof']; ?>" />
 <center>
-<input type="text" size="25" value="" name="cname" id="country"  placeholder="Enter Customer Name" style="width: 268px; height:30px;" />
+<input type="text" size="25" value="" name="cname" list="names" id="country"  placeholder="Enter Customer Name" style="width: 268px; height:30px;" />
+<datalist>
+	<option></option>
+	<?php
+	include('../connect.php');
+	$result = $db->prepare("SELECT * FROM sales");
+		$result->execute();
+		for($i=0; $row = $result->fetch(); $i++){
+	?>
+		<option value="<?php echo $row['name'];?>"></option>
+	<?php
+				}
+			?>
+</datalist>
      
       <div class="suggestionsBox" id="suggestions" style="display: none;">
         <div class="suggestionList" id="suggestionsList"> &nbsp; </div>
