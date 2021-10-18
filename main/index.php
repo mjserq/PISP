@@ -65,12 +65,12 @@
 
 	<h1>Top Customer</h1>
 
-	<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+	<table class="table table-borderless"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			
-			<th width="50%"> Customer Name </th>
-			<th width="50%"> No. of Purchase </th>
+			<th > Customer Name </th>
+			<th > No. of Purchase </th>
 			
 	</thead>
 	<tbody>

@@ -125,7 +125,7 @@ window.onload=startclock;
 <a rel="facebox" href="addsupplier.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Supplier</button></a><br><br>
 
 
-<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+<table class="table table-borderless"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			<th> Supplier </th>

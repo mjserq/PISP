@@ -80,7 +80,7 @@ Customer Reservation
 </div>
 <br>
 
-<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+<table class="table table-borderless"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			<th width="15%"> Full Name </th>

@@ -114,6 +114,11 @@ function sum() {
 				$result->execute();
 				$total = $result->rowcount();
 
+				include('../connect.php');
+				$result = $db->prepare("DELETE FROM products where qty <= 0");
+				$result->execute();
+				$delete = $result->rowcount();
+
 			?>
 			<center>
 			<div >
@@ -138,16 +143,16 @@ function sum() {
 <a rel="facebox" href="addproduct.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Product</button></a><br><br>
 <a href="cat.php"><Button class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Category</button></a><br><br>
 
-<table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
+<table class="hoverTable table table-borderless"  data-responsive="table" style="text-align: left;">
 	<thead>
-		<tr>
-			<th width="12%"> Item Code </th>
-			<th width="14%"> Item Name </th>
+		<tr style="font-size: 15px">
+			<th width="12%"> Product Code </th>
+			<th width="10%"> Product Name </th>
 			<th width="5%"> Category </th>
 			<th width="7%"> Sub-Category </th>
 			<th width="7%"> Supplier </th>
 			<th width="9%"> Date Received </th>
-			<th width="10%"> Expiry Date </th>
+			<th width="8%"> Expiry Date </th>
 			<th width="6%"> Original Price </th>
 			<th width="6%"> Selling Price </th>
 			<th width="6%"> QTY </th>
@@ -193,6 +198,8 @@ function sum() {
 				echo '<tr class="alert alert-warning record" style="color: #fff; background:red;">';
 				   }
 
+				 
+
 				   
 				   
 				else {
@@ -217,7 +224,7 @@ function sum() {
 			echo formatMoney($pprice, true);
 			?></td>
 			<td><?php echo $row['qty_sold']; ?></td>
-			<td><?php echo $row['qty']; ?></td>
+			<td ><?php echo $row['qty']; ?></td>
 			<td>
 			<?php
 			$total=$row['total'];

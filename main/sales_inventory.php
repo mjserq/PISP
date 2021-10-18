@@ -64,32 +64,42 @@ function Clickheretoprint()
 <body>
 <?php include('navfixed.php');?>
 
-	<div class="span12">
+	<div class="container-fluid">
+      <div class="row-fluid">
+	
 	<div class="contentheader">
-			<i class="icon-bar-chart"></i> Product Inventory
+			<i class="icon-table"></i> Sales Inventory
 			</div>
-<br>
+			<ul class="breadcrumb">
+			<li><a href="index.php">Dashboard</a></li> /
+			<li class="active">Sales Inventory</li>
+			</ul>
 
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
-	<div style="float:right;">		
-<button  style="float:left;" class="btn btn-success btn-mini"><a href="javascript:Clickheretoprint()"> Print</button></a>
+	
+		<div style="margin-top: -19px; margin-bottom: 21px;">
+				<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>	
+				<button  style="float:right; margin-right: 15px" class="btn btn-success"><a href="javascript:Clickheretoprint()"> Print</button></a>
+				</div>	
+
 </div>
 <br>
-<br>
-<br>
+
 
 
 <input type="text" style="padding:15px;" name="filter" value="" id="filter" placeholder="Search here..." autocomplete="off" />
 <div class="content" id="content">
 <br><br><br>
-<center><strong>Product Inventory</strong></center>
-<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+<center><strong style="font-size: 30px">Product Inventory</strong></center>
+
+<br>
+<br>
+<table class="table table-bordered"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			<th width="12%"> Invoice </th>
 			<th width="9%"> Date </th>
-			<th width="14%"> Brand Name </th>
-			<th width="16%"> Generic Name </th>
+			<th width="14%"> Product Code </th>
+			<th width="16%"> Product Name </th>
 			<th width="15%"> Category / Description </th>
 			<th width="9%"> Price </th>
 			<th width="9%"> QTY </th>
@@ -97,7 +107,7 @@ function Clickheretoprint()
 			<th width="8%"> Total Amount </th>
 			<th width="8%"> Profit </th>
 
-			<th > Action </th>
+			<!--<th > Action </th>-->
 		</tr>
 	</thead>
 	<tbody>
@@ -141,8 +151,9 @@ function Clickheretoprint()
 			$pprice=$row['profit'];
 			echo formatMoney($pprice, true);
 			?></td>
-			<td> 				
+			<!--<td> 				
 			<a href="deletesalesinventory.php?id=<?php echo $row['transaction_id']; ?>&qty=<?php echo $row['qty'];?>"><button class="btn btn-mini btn-danger"><i class="icon icon-trash"></i> Delete </button></a>
+			</td>-->	
 			</tr>
 			<?php
 				}
@@ -164,8 +175,8 @@ function Clickheretoprint()
 			<tr>
 				
 			<tr>
-				<th colspan="7"><strong style="font-size: 20px; color: #222222;">Total:</strong></th>
-				<th colspan="1"><strong style="font-size: 13px; color: #222222;">
+				<th colspan="7"><strong style="font-size: 20px; color: #222222;"></strong></th>
+				<th colspan="1"><strong style="font-size: 25px; color: #222222;">
 				<?php
 				$resultas = $db->prepare("SELECT sum(amount) from sales_order");
 				$resultas->bindParam(':a', $sdsd);
@@ -176,7 +187,7 @@ function Clickheretoprint()
 				}
 				?>
 				</strong></th>
-				<th colspan="1"><strong style="font-size: 13px; color: #222222;">
+				<th colspan="1"><strong style="font-size: 25px; color: #222222;">
 				<?php
 				$resultas = $db->prepare("SELECT sum(profit) from sales_order");
 				$resultas->bindParam(':b', $sdsd);

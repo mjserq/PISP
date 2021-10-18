@@ -87,8 +87,23 @@ $finalcode='MR-'.createRandomPassword();
 	
 
 		
-	<div class="span10">
-	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
+	<div class="container-fluid">
+      <div class="row-fluid">
+	
+	<div class="contentheader">
+			<i class="icon-table"></i> Sales Receipt
+			</div>
+			<ul class="breadcrumb">
+			<li><a href="index.php">Dashboard</a></li> /
+			<li class="active">Reciept</li>
+			</ul>
+
+	
+		<div style="margin-top: -19px; margin-bottom: 21px;">
+				<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+				<div class="pull-right" style="margin-right:100px;">
+		<a href="javascript:Clickheretoprint()" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print</button></a>
+		</div>
 
 <div class="content" id="content">
 <div style="margin: 0 auto; padding: 20px; width: 900px; font-weight: normal;">
@@ -132,15 +147,17 @@ $finalcode='MR-'.createRandomPassword();
 	<div class="clearfix"></div>
 	</div>
 	<div style="width: 100%; margin-top:-70px;">
-	<table border="1" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 12px;	text-align:left;" width="100%">
+	<table border="0" class="table"  data-responsive="table" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 15px;	text-align:left;" width="100%">
 		<thead>
 			<tr>
-				<th width="90"> Item Code </th>
-				<th> Item Name </th>
-				<th> Qty </th>
-				<th> Price </th>
-				<th> Discount </th>
-				<th> Amount </th>
+				<th width="20%"> Product Code </th>
+				<th width="20%"> Product Name </th>
+				<th width="20%"> Category </th>
+				<th width="20%"> Qty </th>
+				<th width="20%"> Price </th>
+				
+
+				<th width="20%"> Amount </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -155,6 +172,7 @@ $finalcode='MR-'.createRandomPassword();
 				<tr class="record">
 				<td><?php echo $row['product_code']; ?></td>
 				<td><?php echo $row['name']; ?></td>
+				<td><?php echo $row['gen_name']; ?></td>
 				<td><?php echo $row['qty']; ?></td>
 				<td>
 				<?php
@@ -162,12 +180,9 @@ $finalcode='MR-'.createRandomPassword();
 				echo formatMoney($ppp, true);
 				?>
 				</td>
-				<td>
-				<?php
-				$ddd=$row['discount'];
-				echo formatMoney($ddd, true);
-				?>
-				</td>
+
+
+			
 				<td>
 				<?php
 				$dfdf=$row['amount'];
@@ -214,9 +229,7 @@ $finalcode='MR-'.createRandomPassword();
 					if($pt=='cash'){
 					echo 'Change:';
 					}
-					if($pt=='credit'){
-					echo 'Due Date:';
-					}
+					
 					?>&nbsp;
 					</strong></td>
 					<td colspan="2"><strong style="font-size: 15px; color: #222222;">
@@ -235,9 +248,7 @@ $finalcode='MR-'.createRandomPassword();
 						}
 						return $number;
 					}
-					if($pt=='credit'){
-					echo $cash;
-					}
+					
 					if($pt=='cash'){
 					echo formatMoney($amount, true);
 					}
@@ -252,9 +263,7 @@ $finalcode='MR-'.createRandomPassword();
 	</div>
 	</div>
 	</div>
-<div class="pull-right" style="margin-right:100px;">
-		<a href="javascript:Clickheretoprint()" style="font-size:20px;"><button class="btn btn-success btn-large"><i class="icon-print"></i> Print</button></a>
-		</div>	
+	
 </div>
 </div>
 

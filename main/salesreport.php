@@ -59,7 +59,7 @@ function Clickheretoprint()
 
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
-<button  style="float:right;" class="btn btn-success btn-mini"><a href="javascript:Clickheretoprint()"> Print</button></a>
+<button  style="float:right;" class="btn btn-success"><a href="javascript:Clickheretoprint()"> Print</button></a>
 
 </div>
 <form action="salesreport.php" method="get">
@@ -71,7 +71,7 @@ function Clickheretoprint()
 <div style="font-weight:bold; text-align:center;font-size:14px;margin-bottom: 15px;">
 Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['d2'] ?>
 </div>
-<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+<table class="table table-borderless"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			<th width="13%"> Transaction ID </th>
@@ -95,7 +95,7 @@ Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
 			<tr class="record">
-			<td>STI-00<?php echo $row['transaction_id']; ?></td>
+			<td>MVS-00<?php echo $row['transaction_id']; ?></td>
 			<td><?php echo $row['date']; ?></td>
 			<td><?php echo $row['name']; ?></td>
 			<td><?php echo $row['invoice_number']; ?></td>
@@ -115,8 +115,20 @@ Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['
 	</tbody>
 	<thead>
 		<tr>
-			<th colspan="4" style="border-top:1px solid #999999"> Total: </th>
-			<th colspan="1" style="border-top:1px solid #999999"> 
+
+
+				<th></th>
+				<th></th>
+				<th></th>
+			
+				
+				<th></th>
+				<th>Total Amount</th>
+				<th>Total Profit</th>
+				<th></th>
+			<tr>
+			<th colspan="4" style="border-top:1px solid #999999"></th>
+			<th colspan="1" style="font-size: 25px; border-top:1px solid #999999"> 
 			<?php
 				function formatMoney($number, $fractional=false) {
 					if ($fractional) {
@@ -144,7 +156,7 @@ Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['
 				}
 				?>
 			</th>
-				<th colspan="1" style="border-top:1px solid #999999">
+				<th colspan="1" style="font-size: 25px; border-top:1px solid #999999">
 			<?php 
 				$resultia = $db->prepare("SELECT sum(profit) FROM sales WHERE date BETWEEN :c AND :d");
 				$resultia->bindParam(':c', $d1);

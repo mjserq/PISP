@@ -41,7 +41,7 @@ if($position=='admin') {
 		$result->execute();
 		for($i=0; $row = $result->fetch(); $i++){
 	?>
-		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> -<?php echo $row['subcat']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
+		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> -<?php echo $row['subcat']; ?> - <?php echo $row['product_name']; ?> - Qty: <?php echo $row['qty']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
 	<?php
 				}
 			?>
@@ -51,10 +51,10 @@ if($position=='admin') {
 <input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
 <Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
 </form>
-<table class="table table-borderless " id="resultTable" data-responsive="table">
+<table border="0" class="table"  data-responsive="table">
 	<thead>
 		<tr>
-			<th> Product Name </th>
+			<th> Product Code </th>
 			<th> Category </th>
 			<th> Product Name </th>
 			<th> Price </th>
@@ -74,7 +74,7 @@ if($position=='admin') {
 				$result->execute();
 				for($i=1; $row = $result->fetch(); $i++){
 			?>
-			<tr class="record">
+			<tr >
 			<td hidden><?php echo $row['product']; ?></td>
 			<td><?php echo $row['product_code']; ?></td>
 			<td><?php echo $row['gen_name']; ?></td>
@@ -92,6 +92,9 @@ if($position=='admin') {
 			echo formatMoney($dfdf, true);
 			?>
 			</td>
+
+
+
 			<td>
 			<?php
 			$profit=$row['profit'];
@@ -114,8 +117,8 @@ if($position=='admin') {
 			<th>  </th>
 		</tr>
 			<tr>
-				<th colspan="5"><strong style="font-size: 12px; color: #222222;">Total:</strong></th>
-				<td colspan="1"><strong style="font-size: 12px; color: #222222;">
+				<th colspan="5"><strong style="font-size: 12px; color: #222222;"></strong></th>
+				<td colspan="1"><strong style="font-size: 25px; color: #222222;">
 				<?php
 				function formatMoney($number, $fractional=false) {
 					if ($fractional) {
@@ -141,7 +144,7 @@ if($position=='admin') {
 				}
 				?>
 				</strong></td>
-				<td colspan="1"><strong style="font-size: 12px; color: #222222;">
+				<td colspan="1"><strong style="font-size: 25px; color: #222222;">
 			<?php 
 				$resulta = $db->prepare("SELECT sum(profit) FROM sales_order WHERE invoice= :b");
 				$resulta->bindParam(':b', $sdsd);
@@ -159,9 +162,9 @@ if($position=='admin') {
 					<td style="border: none;"></td>
 					<td style="border: none;"></td>
 					<td style="border: none;"></td>
-					<td style="border: none;"></td>
 					<td style="border: none;"><a rel="facebox" href="checkout.php?pt=<?php echo $_GET['id']?>&invoice=<?php echo $_GET['invoice']?>&total=<?php echo $fgfg ?>&totalprof=<?php echo $asd ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large btn-block"><i  class="icon icon-save icon-large" ></i> Invoice</button></a>
 <div class="clearfix"></div></td>
+					<td style="border: none;"></td>
 					<td style="border: none;"></td>
 				</tr>
 				<th></th>

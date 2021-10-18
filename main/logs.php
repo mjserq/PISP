@@ -38,15 +38,20 @@ require_once('auth.php');
 <body>
 <?php include('navfixed.php');?>
 
-	<div class="span12">
+	<div class="container-fluid">
+      <div class="row-fluid">
+	
 	<div class="contentheader">
-			<i class="icon-bar-chart"></i> Sales Logs
+			<i class="icon-table"></i> Sales Logs
 			</div>
-<br>
+			<ul class="breadcrumb">
+			<li><a href="index.php">Dashboard</a></li> /
+			<li class="active">Sales Logs</li>
+			</ul>
 
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
-	<div style="float:right;">		
-</div>
+	
+		<div style="margin-top: -19px; margin-bottom: 21px;">
+				<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 <br>
 <br>
 <br>
@@ -55,17 +60,17 @@ require_once('auth.php');
 <input type="text" style="padding:15px;" name="filter" value="" id="filter" placeholder="Search here..." autocomplete="off" />
 <div class="content" id="content">
 <br><br><br>
-<center><strong>Sales Logs</strong></center>
-<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+
+<table class="table table-bordered"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			<th width="9%"> Date </th>
 			<th width="14%"> Invoice Number</th>
 			<th width="16%"> Cashier </th>
 			<th width="15%"> Customer Name </th>
-			<th width="8%"> Type </th>
-			<th width="8%"> Cash in </th>
-			<th width="8%"> Amount </th>
+			<th width="12%"> Type </th>
+			<th width="12%"> Cash in </th>
+			<th width="12%"> Amount </th>
 		</tr>
 	</thead>
 	<tbody>

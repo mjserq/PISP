@@ -69,7 +69,7 @@ Admin Settings
 <input type="text" name="filter" style="height:35px; color:#222;" id="filter" placeholder="Search user..." autocomplete="off" />
 <a rel="facebox" href="adduser.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add User</button></a><br><br>
 
-<table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
+<table class="table table-borderless"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			<th width="17%"> Username </th>

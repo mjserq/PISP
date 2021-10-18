@@ -108,7 +108,7 @@ function sum() {
 
 <input type="text" style="height:35px; color:#222;" name="filter" value="" id="filter" placeholder="Search Category..." autocomplete="off" />
 <a rel="facebox" href="addcat.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Product</button></a><br><br>
-<table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
+<table class="hoverTable table table-bordered"  data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
 			<th width="50%"> Category </th>
