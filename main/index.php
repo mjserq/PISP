@@ -6,44 +6,7 @@
 
 <?php include 'header.php'; ?>
 <?php include('navfixed.php');?>
-<div style="margin-top: 25px;" class="container-fluid">
-      <div class="row-fluid">
-	<div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-                                  <?php
-                  $position=$_SESSION['SESS_LAST_NAME'];
-                  if($position=='Cashier') {
-                  ?>
-                  <li><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
-                  <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-large"></i> Point of Sale <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="customer.php"><i class="icon-group icon-large"></i> Customer Reservation <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  
-
-                  <?php
-                  }
-                  if($position=='Admin') {
-                  ?>
-
-                  <li><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
-                  <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-large"></i> Point of Sale <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="customer.php"><i class="icon-group icon-large"></i> Customer Reservation <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="products.php"><i class="icon-table icon-large"></i> Inventory <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="supplier.php"><i class="icon-group icon-large"></i> Suppliers <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-large"></i> Sales Report <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="sales_inventory.php"><i class="icon-inbox icon-large"></i> Sales Inventory <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="admin-settings.php"><i class="icon-user icon-large"></i> User Manager <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <li><a href="logs.php"><i class="icon-book icon-large"></i> Logs <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
-                  <?php 
-                      }                   
-                      ?>
-
-
-
-              
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+<?php include 'sidebar.php' ?>
 
 
     <div style="margin-left: 200px" class="container-fluid">
@@ -63,39 +26,136 @@
 			
 <div id="mainmain">
 
-	<h1>Top Customer</h1>
+<!-- Start Content-->
+                    <div class="container-fluid">
 
-	<table class="table table-borderless"  data-responsive="table" style="text-align: left;">
-	<thead>
-		<tr>
-			
-			<th > Customer Name </th>
-			<th > No. of Purchase </th>
-			
-	</thead>
-	<tbody>
-		
-			<?php
-				include('../connect.php');
-				$result = $db->prepare("SELECT name, COUNT(*) FROM sales GROUP BY name ORDER BY COUNT(*) DESC LIMIT 10");
-				$result->execute();
-				for($i=0; $row = $result->fetch(); $i++){
-			?>
-			<tr class="record">
-			<td><?php echo $row['name']; ?></td>
-			<td><?php echo $row['COUNT(*)']; ?></td>
-			
-			</tr>
-			<?php
-				}
-			?>
-		</tbody>
-</table>	
+                      <?php
+                          include('../connect.php');
+                          $result1 = $db->prepare("SELECT *, COUNT(*) FROM user");
+                          $result1->execute();
+                          for($i=0; $row = $result1->fetch(); $i++){
+                          ?>
+
+                        <div class="row">
+                                <div class="card tilebox-one" style="margin-left: 0px;">
+                                    <div class="card-body" style="  width: 250px;
+                                                                    padding: 10px;
+                                                                    border-radius: 20px;
+                                                                    background-color: lightblue;
+                                                                    border: 5px  lightgray;
+                                                                    margin: 0;">
+                                        <h4 class="text-uppercase mt-0">Total Employee</h4>
+                                        <h2 class="my-2"><?php echo $row['COUNT(*)']; ?></h2>
+                                        <?php
+                                             }
+                                         ?>
+                                    </div> <!-- end card-body-->
+                                </div>
+                                <!--end card-->
+
+                                <?php
+                                    include('../connect.php');
+                                    $result2 = $db->prepare("SELECT invoice_number, COUNT(*) FROM sales");
+                                    $result2->execute();
+                                    for($i=0; $row = $result2->fetch(); $i++){
+                                    ?>
+
+                                <div class="card tilebox-one" style="margin-top: -110px;
+                                                                    margin-left: 350px">
+                                    <div class="card-body" style="  width: 250px;
+                                                                    padding: 10px;
+                                                                    border-radius: 20px;
+                                                                    background-color: lightblue;
+                                                                    border: 5px  lightgray;
+                                                                    margin: 0;">
+                                        <h4 class="text-uppercase mt-0">Total Sales</h4>
+                                        <h2 class="my-2" ><?php echo $row['COUNT(*)']; ?></h2>
+                                        <?php
+                                             }
+                                         ?>
+                                        
+                                    </div> <!-- end card-body-->
+                                </div>
+                                <!--end card--> 
+
+
+                                <?php
+                                    include('../connect.php');
+                                    $result3 = $db->prepare("SELECT customer_id, COUNT(*) FROM customer WHERE status = 'Pending'");
+                                    $result3->execute();
+                                    for($i=0; $row = $result3->fetch(); $i++){
+                                    ?>
+
+                                <div class="card tilebox-one" style="margin-top: -110px; margin-left: 700px;">
+                                    <div class="card-body" style="  width: 250px;
+                                                                    padding: 10px;
+                                                                    border-radius: 20px;
+                                                                    background-color: lightblue;
+                                                                    border: 5px  lightgray;
+                                                                    margin: 0;">
+                                        <h4 class="text-uppercase mt-0">Pending Reservations</h4>
+                                        <h2 class="my-2" ><?php echo $row['COUNT(*)']; ?></h2>
+                                        <?php
+                                             }
+                                         ?>
+                                        
+                                    </div> <!-- end card-body-->
+                                </div>
+                                <!--end card-->       
+
+                            <br><br>
+
+                            <div class="col-xl-9 col-lg-8">
+                                <div class="card card-h-100">
+                                    <div class="card-body">
+                                       
+                                        
+                                        <h1 class="header-title mb-3">Top Customers</h1>
+
+                                        <div dir="ltr">
+                                            <div ><table class="table table-borderless"  data-responsive="table" style="text-align: left;">
+                                                <thead>
+                                                  <tr>
+                                                    
+                                                    <th > Customer Name </th>
+                                                    <th > No. of Purchase </th>
+                                                    
+                                                </thead>
+                                                <tbody>
+                                                  
+                                                    <?php
+                                                      include('../connect.php');
+                                                      $result = $db->prepare("SELECT name, COUNT(*) FROM sales GROUP BY name ORDER BY COUNT(*) DESC LIMIT 10");
+                                                      $result->execute();
+                                                      for($i=0; $row = $result->fetch(); $i++){
+                                                    ?>
+                                                    <tr class="record">
+                                                    <td><?php echo $row['name']; ?></td>
+                                                    <td><?php echo $row['COUNT(*)']; ?></td>
+                                                    
+                                                    </tr>
+                                                    <?php
+                                                      }
+                                                    ?>
+                                                  </tbody>
+                                              </table>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div>
+                        </div>
+                       
+        <!-- END wrapper -->
+
+    
+
+      
+	
 
 </div>
 </div>
 </div>
 </body>
-<footer style="margin-left: 50%">SysGrinder 2021</footer>
+<footer><center> SysGrinder 2021 </center></footer>
 <?php include('footer.php'); ?>
 </html>

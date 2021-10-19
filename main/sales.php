@@ -1,11 +1,19 @@
+<html>
+<head>
+	<title>Point Of Sale</title>
+</head>
+<body>
+
 <?php include 'header.php'; ?>
 <?php include('navfixed.php');?>
 
 
     <div class="container-fluid">
+
+
       <div class="row-fluid">
 	   	
-	
+	<div class="container-fluid">
 		<div class="contentheader">
 			<i class="icon-money"></i> Point Of Sale
 			</div>
@@ -13,35 +21,37 @@
 			<a href="index.php"><li>Dashboard</li></a> /
 			<li class="active">Point of Sale</li>
 			</ul>
+
+
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 </div>
 	<?php
-$position=$_SESSION['SESS_LAST_NAME'];
-if($position=='cashier') {
-?>
-<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a>
-
-<a href="../index.php">Logout</a>
-<?php
-}
-if($position=='admin') {
-?>
-				<?php } ?>										
-<form action="incoming.php" method="post" >
-											
-<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
-<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-<select name="product" style="width:650px; "class="chzn-select" required>
-<option></option>
-	<?php
-	include('../connect.php');
-	$result = $db->prepare("SELECT * FROM products");
-		$result->bindParam(':userid', $res);
-		$result->execute();
-		for($i=0; $row = $result->fetch(); $i++){
+	$position=$_SESSION['SESS_LAST_NAME'];
+	if($position=='cashier') {
 	?>
-		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> -<?php echo $row['subcat']; ?> - <?php echo $row['product_name']; ?> - Qty: <?php echo $row['qty']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
+	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a>
+
+	<a href="../index.php">Logout</a>
+	<?php
+	}
+	if($position=='admin') {
+	?>
+					<?php } ?>										
+	<form action="incoming.php" method="post" >
+												
+	<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
+	<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
+	<select name="product" style="width:650px; "class="chzn-select" required>
+	<option></option>
+		<?php
+		include('../connect.php');
+		$result = $db->prepare("SELECT * FROM products");
+			$result->bindParam(':userid', $res);
+			$result->execute();
+			for($i=0; $row = $result->fetch(); $i++){
+		?>
+			<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> -<?php echo $row['subcat']; ?> - <?php echo $row['product_name']; ?> - Qty: <?php echo $row['qty']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
 	<?php
 				}
 			?>
