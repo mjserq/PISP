@@ -1,11 +1,5 @@
 <?php
-// configuration
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$databasename = "posales";
-
-	$connect = mysqli_connect($servername,$username,$password,$databasename);
+	include('../connect.php');
 // query
 if (isset($_POST['btnUpdate'])) {
 

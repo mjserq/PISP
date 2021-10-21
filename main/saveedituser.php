@@ -8,6 +8,7 @@ $b = $_POST['username'];
 $c = $_POST['password'];
 $d = $_POST['position'];
 // query
+$c=md5($c);
 $sql = "UPDATE user 
         SET name=?, username=?, password=?, position=?
         WHERE id=?";

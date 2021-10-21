@@ -11,10 +11,6 @@
 
     <div style="margin-left: 200px" class="container-fluid">
       <div class="row-fluid">
-
-
-
-	
 	
 	<div class="contentheader">
 			<i class="icon-dashboard"></i> Dashboard
@@ -47,7 +43,7 @@
                                         <h4 class="text-uppercase mt-0">Total Employee</h4>
                                         <h2 class="my-2"><?php echo $row['COUNT(*)']; ?></h2>
                                         <?php
-                                             }
+                                             } 
                                          ?>
                                     </div> <!-- end card-body-->
                                 </div>

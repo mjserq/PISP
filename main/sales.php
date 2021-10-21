@@ -51,13 +51,13 @@
 			$result->execute();
 			for($i=0; $row = $result->fetch(); $i++){
 		?>
-			<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> -<?php echo $row['subcat']; ?> - <?php echo $row['product_name']; ?> - Qty: <?php echo $row['qty']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
+			<option value="<?php echo $row['product_id'];?>"><?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> - <?php echo $row['subcat']; ?> - Qty: <?php echo $row['qty']; ?> - Price: <?php echo $row['price']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
 	<?php
 				}
 			?>
 </select>
-<input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
-<input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
+Qty: <input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;"required>
+<input type="hidden" name="discount" value="" placeholder="Discount" autocomplete="off" style="width: 85px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" /> 
 <input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
 <Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
 </form>
@@ -103,7 +103,7 @@
 			?>
 			</td>
 
-
+	
 
 			<td>
 			<?php
@@ -123,6 +123,7 @@
 			<th>  </th>
 			<th>  </th>
 			<td> Total Amount: </td>
+			<td>  </td>
 			<td> Total Profit: </td>
 			<th>  </th>
 		</tr>
