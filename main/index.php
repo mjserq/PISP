@@ -27,7 +27,7 @@
 
                       <?php
                           include('../connect.php');
-                          $result1 = $db->prepare("SELECT *, COUNT(*) FROM user");
+                          $result1 = $db->prepare("SELECT COUNT(date) FROM sales_order WHERE date=curdate() - interval 1 day");
                           $result1->execute();
                           for($i=0; $row = $result1->fetch(); $i++){
                           ?>
@@ -40,8 +40,8 @@
                                                                     background-color: lightblue;
                                                                     border: 5px  lightgray;
                                                                     margin: 0;">
-                                        <h4 class="text-uppercase mt-0">Total Employee</h4>
-                                        <h2 class="my-2"><?php echo $row['COUNT(*)']; ?></h2>
+                                        <h4 class="text-uppercase mt-0">Yesterday's Sales</h4>
+                                        <h2 class="my-2"><?php echo $row['COUNT(date)']; ?></h2>
                                         <?php
                                              } 
                                          ?>
@@ -98,22 +98,22 @@
                                     </div> <!-- end card-body-->
                                 </div>
                                 <!--end card-->       
+                        <br><br>
 
-                            <br><br>
-
+                          <center>
                             <div class="col-xl-9 col-lg-8">
                                 <div class="card card-h-100">
                                     <div class="card-body">
                                        
                                         
-                                        <h1 class="header-title mb-3">Top Customers</h1>
+                                        <h2 class="header-title mb-3">Top Customers</h2>
 
                                         <div dir="ltr">
                                             <div ><table class="table table-borderless"  data-responsive="table" style="text-align: left;">
                                                 <thead>
                                                   <tr>
                                                     
-                                                    <th > Customer Name </th>
+                                                    <th > Customer </th>
                                                     <th > No. of Purchase </th>
                                                     
                                                 </thead>
@@ -140,7 +140,91 @@
                                 </div> <!-- end card-->
                             </div>
                         </div>
-                       
+
+                        <br><br>
+
+                            <div class="col-xl-9 col-lg-8">
+                                <div class="card card-h-100">
+                                    <div class="card-body">
+                                       
+                                        
+                                        <h2 class="header-title mb-3">Top Sold Products</h2>
+
+                                        <div dir="ltr">
+                                            <div ><table class="table table-borderless"  data-responsive="table" style="text-align: left;">
+                                                <thead>
+                                                  <tr>
+                                                    
+                                                    <th > Product</th>
+                                                    <th > No. of Sale </th>
+                                                    
+                                                </thead>
+                                                <tbody>
+                                                  
+                                                    <?php
+                                                      include('../connect.php');
+                                                      $result = $db->prepare("SELECT name, COUNT(*) FROM sales_order GROUP BY name ORDER BY COUNT(*) DESC LIMIT 10");
+                                                      $result->execute();
+                                                      for($i=0; $row = $result->fetch(); $i++){
+                                                    ?>
+                                                    <tr class="record">
+                                                    <td><?php echo $row['name']; ?></td>
+                                                    <td><?php echo $row['COUNT(*)']; ?></td>
+                                                    
+                                                    </tr>
+                                                    <?php
+                                                      }
+                                                    ?>
+                                                  </tbody>
+                                              </table>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                            <div class="col-xl-9 col-lg-8">
+                                <div class="card card-h-100">
+                                    <div class="card-body">
+                                       
+                                        
+                                        <h2 class="header-title mb-3">Top Sales Categories</h2>
+
+                                        <div dir="ltr">
+                                            <div ><table class="table table-borderless"  data-responsive="table" style="text-align: left;">
+                                                <thead>
+                                                  <tr>
+                                                    
+                                                    <th > Category</th>
+                                                    <th > Product Sold </th>
+                                                    
+                                                </thead>
+                                                <tbody>
+                                                  
+                                                    <?php
+                                                      include('../connect.php');
+                                                      $result = $db->prepare("SELECT gen_name, COUNT(*) FROM sales_order GROUP BY gen_name ORDER BY COUNT(*) DESC LIMIT 10");
+                                                      $result->execute();
+                                                      for($i=0; $row = $result->fetch(); $i++){
+                                                    ?>
+                                                    <tr class="record">
+                                                    <td><?php echo $row['gen_name']; ?></td>
+                                                    <td><?php echo $row['COUNT(*)']; ?></td>
+                                                    
+                                                    </tr>
+                                                    <?php
+                                                      }
+                                                    ?>
+                                                  </tbody>
+                                              </table>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div>
+                        </div>
+                       </center>
         <!-- END wrapper -->
 
     

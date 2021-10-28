@@ -74,7 +74,14 @@ Customer Reservation
 				$result = $db->prepare("SELECT * FROM customer ORDER BY customer_id DESC");
 				$result->execute();
 				$rowcount = $result->rowcount();
-			?>
+			
+
+
+				//$result = $db->prepare("DELETE FROM customer where status = 'Complete'");
+				//$result->execute();
+				//$delete = $result->rowcount();
+
+				?>
 			<div style="text-align:center;">
 			Total Number of Customers: <font color="green" style="font:bold 22px 'Aleo';"><?php echo $rowcount;?></font>
 			</div>

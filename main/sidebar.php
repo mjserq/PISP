@@ -1,4 +1,37 @@
 
+<style>
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
 
 <div style="margin-top: 25px;" class="container-fluid">
       <div class="row-fluid">
@@ -9,6 +42,21 @@
                   $position=$_SESSION['SESS_LAST_NAME'];
                   if($position=='Cashier') {
                   ?>
+                  <li><form class="example" action="preview.php?invoice=">
+                  <input style="width: 120px; height: 40px;" type="text" placeholder="Invoice No." name="invoice" required>
+                  <button style="width: 40px" type="submit" name="searchBtn"><i class="fa icon-search icon-small"></i></button>
+
+                   <?php
+                        if (isset($_POST['searchBtn'])) {
+                          include('../connect.php');
+                          $result = $db->prepare("SELECT * FROM sales_order WHERE invoice='invoice'");
+                          $result->execute();
+                        }else{
+                         
+                        }
+
+                          ?>
+                  </form></li>
                   <li class="active"><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
                   <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-large"></i> Point of Sale <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
                   <li><a href="customer.php"><i class="icon-group icon-large"></i> Customer Reservation <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
@@ -18,6 +66,23 @@
                   }
                   if($position=='Admin') {
                   ?>
+
+
+                  <li><form class="example" action="preview.php?invoice=">
+                  <input style="width: 120px; height: 40px;" type="text" placeholder="Invoice No." name="invoice" required>
+                  <button style="width: 40px" type="submit" name="searchBtn"><i class="fa icon-search icon-small"></i></button>
+
+                   <?php
+                        if (isset($_POST['searchBtn'])) {
+                          include('../connect.php');
+                          $result = $db->prepare("SELECT * FROM sales_order WHERE invoice='invoice'");
+                          $result->execute();
+                        }else{
+                         
+                        }
+
+                          ?>
+                  </form></li>
 
                   <li class="active"><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
                   <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-large"></i> Point of Sale <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>

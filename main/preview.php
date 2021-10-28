@@ -153,9 +153,8 @@ $finalcode='MR-'.createRandomPassword();
 				<th width="14%"> Product Code </th>
 				<th width="14%"> Product Name </th>
 				<th width="14%"> Category </th>
-				<th width="14%"> Qty </th>
 				<th width="14%"> Price </th>
-				
+				<th width="14%"> Qty </th>
 				<th width="14%"> Discount </th>
 				<th width="14%"> Amount </th>
 			</tr>
@@ -173,14 +172,13 @@ $finalcode='MR-'.createRandomPassword();
 				<td><?php echo $row['product_code']; ?></td>
 				<td><?php echo $row['name']; ?></td>
 				<td><?php echo $row['gen_name']; ?></td>
-				<td><?php echo $row['qty']; ?></td>
 				<td>
 				<?php
 				$ppp=$row['price'];
 				echo formatMoney($ppp, true);
 				?>
 				</td>
-
+				<td><?php echo $row['qty']; ?></td>
 				<td><?php echo $row['discount']; ?></td>
 			
 				<td>
