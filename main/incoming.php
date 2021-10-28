@@ -11,7 +11,7 @@ $result = $db->prepare("SELECT * FROM products WHERE product_id= :userid");
 $result->bindParam(':userid', $b);
 $result->execute();
 for($i=0; $row = $result->fetch(); $i++){
-$asasa=$row['price'];
+$price=$row['price'];
 $code=$row['product_code'];
 $gen=$row['gen_name'];
 $name=$row['product_name'];
@@ -25,13 +25,16 @@ $sql = "UPDATE products
 		WHERE product_id=?";
 $q = $db->prepare($sql);
 $q->execute(array($c,$b));
-$fffffff=$asasa-$discount;
-$d=$fffffff*$c;
-$profit=$p*$c;
+$discounted=$price-$discount;
+$d=$discounted*$c;
+$profit=$p-$discount;
+$fprofit=$profit*$c;
+$tdiscount=$discount*$c;
+
 // query
-$sql = "INSERT INTO sales_order (invoice,product,qty,amount,name,price,profit,product_code,gen_name,date) VALUES (:a,:b,:c,:d,:e,:f,:h,:i,:j,:k)";
+$sql = "INSERT INTO sales_order (invoice,product,qty,amount,name,price,profit,product_code,gen_name,discount,date) VALUES (:a,:b,:c,:d,:e,:f,:h,:i,:j,:z,:k)";
 $q = $db->prepare($sql);
-$q->execute(array(':a'=>$a,':b'=>$b,':c'=>$c,':d'=>$d,':e'=>$name,':f'=>$asasa,':h'=>$profit,':i'=>$code,':j'=>$gen,':k'=>$date));
+$q->execute(array(':a'=>$a,':b'=>$b,':c'=>$c,':d'=>$d,':e'=>$name,':f'=>$price,':h'=>$fprofit,':i'=>$code,':j'=>$gen,':z'=>$tdiscount,':k'=>$date));
 header("location: sales.php?id=$w&invoice=$a");
 
 

@@ -42,7 +42,7 @@
 												
 	<input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 	<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-	<select name="product" style="width:650px; "class="chzn-select" required>
+	<select name="product" style="width:800px; "class="chzn-select" required>
 	<option></option>
 		<?php
 		include('../connect.php');
@@ -57,8 +57,8 @@
 			?>
 </select>
 Qty: <input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;"required>
-<input type="hidden" name="discount" value="" placeholder="Discount" autocomplete="off" style="width: 85px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" /> 
-<input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />
+Discount: <input type="number" name="discount" value="" placeholder="Discount" autocomplete="off" style="width: 85px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" /> 
+<input type="hidden" name="date" value="<?php echo date("Y/m/d"); ?>" />
 <Button type="submit" class="btn btn-info" style="width: 123px; height:35px; margin-top:-5px;" /><i class="icon-plus-sign icon-large"></i> Add</button>
 </form>
 <table border="0" class="table"  data-responsive="table">
@@ -68,7 +68,7 @@ Qty: <input type="number" name="qty" value="1" min="1" placeholder="Qty" autocom
 			<th> Category </th>
 			<th> Product Name </th>
 			<th> Price </th>
-			<th> Qty </th>
+			<th> Qty </th>			
 			<th> Amount </th>
 			<th> Profit </th>
 			<th> Action </th>
@@ -96,6 +96,7 @@ Qty: <input type="number" name="qty" value="1" min="1" placeholder="Qty" autocom
 			?>
 			</td>
 			<td><?php echo $row['qty']; ?></td>
+
 			<td>
 			<?php
 			$dfdf=$row['amount'];
@@ -123,7 +124,6 @@ Qty: <input type="number" name="qty" value="1" min="1" placeholder="Qty" autocom
 			<th>  </th>
 			<th>  </th>
 			<td> Total Amount: </td>
-			<td>  </td>
 			<td> Total Profit: </td>
 			<th>  </th>
 		</tr>

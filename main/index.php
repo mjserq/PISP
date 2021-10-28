@@ -51,7 +51,7 @@
 
                                 <?php
                                     include('../connect.php');
-                                    $result2 = $db->prepare("SELECT invoice_number, COUNT(*) FROM sales");
+                                    $result2 = $db->prepare("SELECT COUNT(date) FROM sales_order WHERE date=curdate() ");
                                     $result2->execute();
                                     for($i=0; $row = $result2->fetch(); $i++){
                                     ?>
@@ -64,8 +64,8 @@
                                                                     background-color: lightblue;
                                                                     border: 5px  lightgray;
                                                                     margin: 0;">
-                                        <h4 class="text-uppercase mt-0">Total Sales</h4>
-                                        <h2 class="my-2" ><?php echo $row['COUNT(*)']; ?></h2>
+                                        <h4 class="text-uppercase mt-0">Today's Sales</h4>
+                                        <h2 class="my-2" ><?php echo $row['COUNT(date)']; ?></h2>
                                         <?php
                                              }
                                          ?>

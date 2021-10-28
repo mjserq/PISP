@@ -150,14 +150,14 @@ $finalcode='MR-'.createRandomPassword();
 	<table border="0" class="table"  data-responsive="table" cellpadding="4" cellspacing="0" style="font-family: arial; font-size: 15px;	text-align:left;" width="100%">
 		<thead>
 			<tr>
-				<th width="20%"> Product Code </th>
-				<th width="20%"> Product Name </th>
-				<th width="20%"> Category </th>
-				<th width="20%"> Qty </th>
-				<th width="20%"> Price </th>
+				<th width="14%"> Product Code </th>
+				<th width="14%"> Product Name </th>
+				<th width="14%"> Category </th>
+				<th width="14%"> Qty </th>
+				<th width="14%"> Price </th>
 				
-
-				<th width="20%"> Amount </th>
+				<th width="14%"> Discount </th>
+				<th width="14%"> Amount </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -181,7 +181,7 @@ $finalcode='MR-'.createRandomPassword();
 				?>
 				</td>
 
-
+				<td><?php echo $row['discount']; ?></td>
 			
 				<td>
 				<?php
@@ -195,7 +195,7 @@ $finalcode='MR-'.createRandomPassword();
 				?>
 			
 				<tr>
-					<td colspan="5" style=" text-align:right;"><strong style="font-size: 12px;">Total: &nbsp;</strong></td>
+					<td colspan="6" style=" text-align:right;"><strong style="font-size: 12px;">Total: &nbsp;</strong></td>
 					<td colspan="2"><strong style="font-size: 12px;">
 					<?php
 					$sdsd=$_GET['invoice'];
@@ -212,7 +212,7 @@ $finalcode='MR-'.createRandomPassword();
 				<?php if($pt=='cash'){
 				?>
 				<tr>
-					<td colspan="5"style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">Cash Tendered:&nbsp;</strong></td>
+					<td colspan="6"style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">Cash Tendered:&nbsp;</strong></td>
 					<td colspan="2"><strong style="font-size: 12px; color: #222222;">
 					<?php
 					echo formatMoney($cash, true);
@@ -223,7 +223,7 @@ $finalcode='MR-'.createRandomPassword();
 				}
 				?>
 				<tr>
-					<td colspan="5" style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">
+					<td colspan="6" style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">
 					<font style="font-size:20px;">
 					<?php
 					if($pt=='cash'){

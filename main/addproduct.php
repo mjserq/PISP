@@ -66,7 +66,7 @@ $prefix= md5(time()*rand(1, 2)); echo strip_tags(substr($prefix ,0,4));?>" name=
 	}
 	?>
 </select><br>
-<span>Sub-Category : </span><input type="text" style="width:265px; height:30px;" name="subcate" Required/><br>
+<span>Sub-Category : </span><input type="text" style="width:265px; height:30px;" name="subcate"/><br>
 <span>Date Arrival: </span><input type="date" style="width:265px; height:30px;" placeholder="Date Arrival" class="tcal tcalInput"  name="date_arrival" ></input><br>
 <span>Expiry Date : </span><input type="text" style="width:265px; height:30px;" placeholder="Expiry Date" class="tcal tcalInput" name="exdate" ></input><br>
 <span>Selling Price : </span><input type="text" id="txt1" style="width:265px; height:30px;" name="price" onkeyup="sum();" Required><br>

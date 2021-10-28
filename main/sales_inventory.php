@@ -99,11 +99,11 @@ function Clickheretoprint()
 			<th width="12%"> Invoice </th>
 			<th width="9%"> Date </th>
 			<th width="14%"> Product Code </th>
-			<th width="16%"> Product Name </th>
-			<th width="15%"> Category / Description </th>
+			<th width="10%"> Category </th>
+			<th width="11%"> Prodcut Name</th>
 			<th width="9%"> Price </th>
+			<th width="10%"> Discount </th>
 			<th width="9%"> QTY </th>
-
 			<th width="8%"> Total Amount </th>
 			<th width="8%"> Profit </th>
 
@@ -128,9 +128,13 @@ function Clickheretoprint()
 					return $number;
 				}
 				include('../connect.php');
+
 				$result = $db->prepare("SELECT * FROM sales_order ORDER BY transaction_id DESC");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
+					
+
+
 			?>
 			<tr class="record">
 			<td><?php echo $row['invoice']; ?></td>
@@ -142,7 +146,8 @@ function Clickheretoprint()
 			$price=$row['price'];
 			echo formatMoney($price, true);
 			?></td>
-						<td><?php echo $row['qty']; ?></td>
+			<td><?php echo $row['discount']; ?></td>
+			<td><?php echo $row['qty']; ?></td>
 			<td><?php
 			$oprice=$row['amount'];
 			echo formatMoney($oprice, true);
