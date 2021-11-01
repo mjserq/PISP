@@ -68,7 +68,7 @@ form.example::after {
                   ?>
 
 
-                  <li><form class="example" action="preview.php?invoice=">
+                <!-- <li><form class="example" action="preview.php?invoice=">
                   <input style="width: 120px; height: 40px;" type="text" placeholder="Invoice No." name="invoice" required>
                   <button style="width: 40px" type="submit" name="searchBtn"><i class="fa icon-search icon-small"></i></button>
 
@@ -82,7 +82,7 @@ form.example::after {
                         }
 
                           ?>
-                  </form></li>
+                  </form></li>-->
 
                   <li class="active"><a href="index.php"><i class="icon-dashboard icon-large"></i> Dashboard <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li> 
                   <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-large"></i> Point of Sale <div class="pull-right"><i class="icon-circle-arrow-right icon-large"></i></div></a></li>
