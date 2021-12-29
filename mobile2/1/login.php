@@ -1,8 +1,8 @@
 <?php 
 session_start(); 
-include "db_connect.php";
+include "db_conn.php";
 
-if (isset($_POST['username']) && isset($_POST['password'])&&isset($_POST['fullname']) && isset($_POST['address'])) {
+if (isset($_POST['username']) && isset($_POST['password'])) {
 
 	function validate($data){
        $data = trim($data);
@@ -13,39 +13,32 @@ if (isset($_POST['username']) && isset($_POST['password'])&&isset($_POST['fullna
 
 	$uname = validate($_POST['username']);
 	$pass = validate($_POST['password']);
-	$fname = validate($_POST['fullname']);
-	$adrs = validate($_POST['address']);
 
 	if (empty($uname)) {
 		echo "Username is Required";
 	}else if(empty($pass)){
         echo "Password is Required"; 
-	}else if(empty($fname)){
-        echo "Full Name is Required"; 
-	}else if(empty($adrs)){
-        echo "Address is Required"; 
 	}else{
 		// hashing the password
         $pass = md5($pass);
 
         
-		$sql = "SELECT * FROM customer_user WHERE username='$uname' AND password='$pass' AND fullname='$fname' AND address='$adrs'";
+		$sql = "SELECT * FROM customer_user WHERE username='$uname' AND password='$pass'";
 
-		$result = mysqli_query($conn, $sql);
+		$result = mysqli_query($connect, $sql);
 
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
-            if ($row['username'] === $uname && $row['password'] === $pass && $row['fullname'] === $fname && $row['address'] === $adrs) {
+            if ($row['username'] === $uname && $row['password'] === $pass) {
             	$_SESSION['username'] = $row['username'];
             	$_SESSION['fullname'] = $row['fullname'];
-            	$_SESSION['address'] = $row['address'];
             	$_SESSION['user_id'] = $row['user_id'];
             	echo "Login Success";
             }else{
-				echo "Incorect Credentials";
+				echo "Incorect User name or Password";
 			}
 		}else{
-			echo "Incorect Credentials";
+			echo "Incorect User name or Password";
 		}
 	}
 	
